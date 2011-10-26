@@ -1,0 +1,32 @@
+<% 
+   can_view = User.current.allowed_to?(:view_issuelimits, @project)
+   can_edit = User.current.allowed_to?(:edit_issuelimits, @project)
+%>
+
+<% html_title l(:lbl_menu) -%>
+
+<h2><%= l(:lbl_main) %></h2>
+
+<% form_for :issuelimits, @issuelimits, :url => { :controller => 'issuelimits', :action => "savelimit", :project_id => @project.identifier, :id => @issuelimits.id} do |f| %>
+<% if can_edit %>
+  <p>
+    <%= f.label l(:lbl_active) %>
+    <%= f.check_box :limitactive %>
+  </p>
+  <p>
+    <%= f.label l(:lbl_limit_count) %>
+    <%= f.text_field :issuecount, :size => 5 %>
+  </p>
+  <p><%= f.submit l(:btn_save) %></p>
+<% elsif can_view %>
+  <p>
+    <%= f.label l(:lbl_active) %>
+    <%= f.check_box :limitactive, :disabled => true %>
+  </p>
+  <p>
+    <%= f.label l(:lbl_limit_count) %>
+    <%= f.text_field :issuecount, :size => 5, :disabled => true %>
+  </p>
+<% end %>
+
+<% end %>

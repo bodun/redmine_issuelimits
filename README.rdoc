@@ -1,0 +1,20 @@
+= Redmine Issue Limits Plugin
+
+Redmine plugin for new issue limitation.
+Plugin allow block creation of new issue when limit of opened issue reached.
+Limits can be specified per project.
+
+= Install
+
+script/plugin install git://github.com/bodun/redmine_issuelimits.git
+
+= Usage
+
+Setup Roles and permissions in admin tab.
+In project preferences turn on Issuelimits module.
+In project menu select Limitation
+Check "Limits active", input "Maximum issue counts"
+Save changes.
+
+When user try to create new issue when count of opened issues more then specified limit, error message will be shown.
+

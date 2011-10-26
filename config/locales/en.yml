@@ -1,0 +1,12 @@
+en:
+  btn_save: Save
+  lbl_main: Open issue limit
+  lbl_active: Limit active
+  lbl_limit_count: Maximum issue count
+  lbl_menu: Limits
+  msg_save_success: Parameters stored successfully
+  msg_save_error: Error storing parameters!
+  permission_view_issuelimits: Show issue limits
+  permission_edit_issuelimits: Edit issue limits
+  project_module_issuelimits: Limitation
+  error_limit_reached: Open issues limit reached (%{limit})! Please close existsting issue before create new one.

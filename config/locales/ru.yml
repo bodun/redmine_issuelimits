@@ -1,0 +1,12 @@
+ru:
+  btn_save: Сохранить
+  lbl_main: Лимит открытых задач
+  lbl_active: Лимитация активна
+  lbl_limit_count: Максимальное количество задач
+  lbl_menu: Лимитация
+  msg_save_success: Параметры лимитации сохранены
+  msg_save_error: Ошибка сохранения параметров!
+  permission_view_issuelimits: Просмотр лимитов новых задач
+  permission_edit_issuelimits: Редактирование лимитов новых задач
+  project_module_issuelimits: Лимитация
+  error_limit_reached: Достигнут лимит открытых задач (%{limit})! Перед созданием новой задачи следует закрыть существующие.
