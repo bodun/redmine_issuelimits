@@ -15,8 +15,8 @@ Redmine::Plugin.register :redmine_issuelimits do
   author 'Yevhen Kyrylchenko'
   description 'Plugin for limitation of new issues'
   version '0.0.1'
-#  url 'http://example.com/path/to/plugin'
-#  author_url 'http://example.com/about'
+  url 'https://github.com/bodun/redmine_issuelimits'
+  author_url 'http://www.facebook.com/profile.php?id=100002042757641'
 
   project_module :issuelimits do
     permission :view_issuelimits, {:issuelimits => :index}, :require => :member
