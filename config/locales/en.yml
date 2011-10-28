@@ -10,3 +10,8 @@ en:
   permission_edit_issuelimits: Edit issue limits
   project_module_issuelimits: Limitation
   error_limit_reached: Open issues limit reached (%{limit})! Please close existsting issue before create new one.
+  lbl_per_tracker_mode: Per tracker limitation mode
+  lbl_per_project_mode: Per project limitation mode
+  lbl_tracker: Tracker
+  lbl_switch_to_per_tracker_mode: Switch to per tracker limitation mode
+  lbl_switch_to_per_project_mode: Switch to per project limitation mode

@@ -18,3 +18,10 @@ Save changes.
 
 When user try to create new issue when count of opened issues more then specified limit, error message will be shown.
 
+= Changelog
+
+0.0.2 (2011-10-28)
+  * Added ability to select limitation mode - per project or per tracker
+
+0.0.1 (2011-10-26)
+  * Initial public release

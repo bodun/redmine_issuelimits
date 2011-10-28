@@ -1,0 +1,17 @@
+uk:
+  btn_save: Зберегти
+  lbl_main: Ліміт відкритих задач
+  lbl_active: Лімітація активна
+  lbl_limit_count: Максимальна кількість задач
+  lbl_menu: Лімітація
+  msg_save_success: Параметри лімітації збережені
+  msg_save_error: Помилка збереження параметрів!
+  permission_view_issuelimits: Пуругляд лімітів нових задач
+  permission_edit_issuelimits: Редагування лімітів нових задач
+  project_module_issuelimits: Лімітація
+  error_limit_reached: Досягнуто ліміт відкритих задач (%{limit})! Перед створенням нової задачі необхідно закрити існуючі.
+  lbl_per_tracker_mode: Режим лімітації по трекерам
+  lbl_per_project_mode: Режим лімітації по проектам
+  lbl_tracker: Трекер
+  lbl_switch_to_per_tracker_mode: Перемкнути в режим лімітації по трекерам
+  lbl_switch_to_per_project_mode: Перемкнути в режим лімітації по проектам

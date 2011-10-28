@@ -10,3 +10,8 @@ ru:
   permission_edit_issuelimits: Редактирование лимитов новых задач
   project_module_issuelimits: Лимитация
   error_limit_reached: Достигнут лимит открытых задач (%{limit})! Перед созданием новой задачи следует закрыть существующие.
+  lbl_per_tracker_mode: Режим лимитации по трекерам
+  lbl_per_project_mode: Режим лимитации по проектам
+  lbl_tracker: Трекер
+  lbl_switch_to_per_tracker_mode: Переключить в режим лимитации по трекерам
+  lbl_switch_to_per_project_mode: Переключить в режим лимитации по проектам

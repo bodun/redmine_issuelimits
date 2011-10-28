@@ -4,29 +4,67 @@
 %>
 
 <% html_title l(:lbl_menu) -%>
+<style type="text/css">
+.limittable
+{
+  width: 300px;
+  
+}
+</style>
 
 <h2><%= l(:lbl_main) %></h2>
 
 <% form_for :issuelimits, @issuelimits, :url => { :controller => 'issuelimits', :action => "savelimit", :project_id => @project.identifier, :id => @issuelimits.id} do |f| %>
-<% if can_edit %>
-  <p>
-    <%= f.label l(:lbl_active) %>
-    <%= f.check_box :limitactive %>
-  </p>
-  <p>
-    <%= f.label l(:lbl_limit_count) %>
-    <%= f.text_field :issuecount, :size => 5 %>
-  </p>
-  <p><%= f.submit l(:btn_save) %></p>
-<% elsif can_view %>
-  <p>
-    <%= f.label l(:lbl_active) %>
-    <%= f.check_box :limitactive, :disabled => true %>
-  </p>
-  <p>
-    <%= f.label l(:lbl_limit_count) %>
-    <%= f.text_field :issuecount, :size => 5, :disabled => true %>
-  </p>
-<% end %>
+  <% if can_edit || can_view %>
+    <% if f.object.pertracker %>
+      <p><%= l(:lbl_per_tracker_mode)%></p>
+      <% if can_edit %>
+        <p><%= link_to(l(:lbl_switch_to_per_project_mode), { :controller => 'issuelimits', :action => "switch_mode", :project_id => @project.identifier, :id => @issuelimits.id}) %></p>
+      <% end %>
+      <div class="limittable">
+      <table class="list" >
+      <thead><tr>
+      <th><%= l(:lbl_tracker)%></th>
+      <th><%= l(:lbl_active)%></th>
+      <th><%= l(:lbl_limit_count)%></th>
+      </tr></thead>
+      <tbody>
+    <% else %>
+      <p><%= l(:lbl_per_project_mode)%></p>
+      <% if can_edit %>
+        <p><%= link_to(l(:lbl_switch_to_per_tracker_mode), { :controller => 'issuelimits', :action => "switch_mode", :project_id => @project.identifier, :id => @issuelimits.id}) %></p>
+      <% end %>
+    <% end %>
 
+    <% f.fields_for :limits, @issuelimits.limits do |lim|%>
+        <% if f.object.pertracker %>
+          <tr>
+        <% end %>
+        <% if !lim.object.trackerid.nil? && f.object.pertracker %>
+          <td><%= lim.label Tracker.find(lim.object.trackerid).name %></td>
+          <td align="center"><%= lim.check_box :limitactive, :disabled => !can_edit %></td>
+          <td><%= lim.text_field :issuecount, :disabled => !can_edit %></td>
+        <% elsif lim.object.trackerid.nil? && !f.object.pertracker %>
+          <p>
+            <%= f.label l(:lbl_active) %>
+            <%= lim.check_box :limitactive, :disabled => !can_edit %>
+          </p>
+          <p>
+            <%= f.label l(:lbl_limit_count) %>
+            <%= lim.text_field :issuecount, :size => 5, :disabled => !can_edit %>
+          </p>
+        <% end %>
+        <% if f.object.pertracker %>
+          </tr>
+        <% end %>
+    <% end %>
+    <% if f.object.pertracker %>
+      </tbody>
+      </table>
+      </div>
+    <% end %>
+    <% if can_edit %>
+      <p><%= f.submit l(:btn_save) %></p>
+    <% end %>
+  <% end %>
 <% end %>

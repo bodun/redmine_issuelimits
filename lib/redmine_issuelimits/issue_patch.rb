@@ -32,29 +32,38 @@ module RedmineIssuelimits
         end
       end
       project=Project.find(self.project_id)
-
       issuelimit = Issuelimit.find(:first, :conditions => { :projectid => project.id } )
       if !issuelimit.nil?
-        if issuelimit.limitactive
-          #Find condition for opened statuses
-          statuses = IssueStatus.find(:all, :conditions => ["is_closed = 0"])
+        if issuelimit.pertracker?
+          # Per tracker mode
+          limit = Limit.find(:first, :conditions => ["issuelimit_id = ? and trackerid = ?", issuelimit.id, self.tracker_id])
+        else
+          # Per project mode
+          limit = Limit.find(:first, :conditions => ["issuelimit_id = ? and trackerid IS NULL", issuelimit.id])
+        end
 
-          stat_str = String.new("")
-          statuses.each do |s|
-            stat_str << s.id.to_s << ", "
-          end
-          stat_str = stat_str[0..stat_str.length - 3]
+        if !limit.nil?
+          if limit.limitactive == 1
+            #Find condition for opened statuses
+            statuses = IssueStatus.find(:all, :conditions => ["is_closed = 0"])
 
-          issues = Issue.find(:all, :conditions => ["project_id = #{project.id} and status_id in (#{stat_str})"])
+            stat_str = String.new("")
+            statuses.each do |s|
+              stat_str << s.id.to_s << ", "
+            end
+            stat_str = stat_str[0..stat_str.length - 3]
 
-          if issues.count >= issuelimit.issuecount
-            errors.add_to_base(l(:error_limit_reached, :limit => issuelimit.issuecount))
-            return false
+            if issuelimit.pertracker?
+              issues = Issue.find(:all, :conditions => ["project_id = #{project.id} and status_id in (#{stat_str}) and tracker_id = #{self.tracker_id}"])
+            else
+              issues = Issue.find(:all, :conditions => ["project_id = #{project.id} and status_id in (#{stat_str})"])
+            end
+            if issues.count >= limit.issuecount
+              errors.add_to_base(l(:error_limit_reached, :limit => limit.issuecount))
+            end
           end
         end
       end
-
-      return true
     end
   end
 end
