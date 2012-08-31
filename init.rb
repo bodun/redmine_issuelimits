@@ -1,7 +1,7 @@
 require 'redmine'
 
-require 'dispatcher'
-Dispatcher.to_prepare :redmine_issuelimits do 
+#require 'dispatcher'
+ActionDispatch::Callbacks.to_prepare do
   require_dependency 'issue'
   
   unless Issue.included_modules.include? RedmineIssuelimits::IssuePatch 
@@ -14,7 +14,7 @@ Redmine::Plugin.register :redmine_issuelimits do
   name 'Issuelimits plugin'
   author 'Yevhen Kyrylchenko'
   description 'Plugin for limitation of new issues'
-  version '0.0.2'
+  version '0.0.3'
   url 'https://github.com/bodun/redmine_issuelimits'
   author_url 'http://www.facebook.com/profile.php?id=100002042757641'
 

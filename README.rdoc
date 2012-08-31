@@ -20,6 +20,9 @@ When user try to create new issue when count of opened issues more then specifie
 
 = Changelog
 
+0.0.3 (2012-08-31)
+  * Now works with Redmine 2.0.x
+
 0.0.2 (2011-10-28)
   * Added ability to select limitation mode - per project or per tracker
 

@@ -8,7 +8,7 @@ module RedmineIssuelimits
       base.class_eval do 
         unloadable # Send unloadable so it will not be unloaded in development
 
-        validate_on_create :check_limits
+        validate :check_limits, :on => :create
 
         # Add visible to Redmine
         unless respond_to?(:visible)

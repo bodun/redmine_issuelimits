@@ -1,4 +1,4 @@
-<% 
+<%
    can_view = User.current.allowed_to?(:view_issuelimits, @project)
    can_edit = User.current.allowed_to?(:edit_issuelimits, @project)
 %>
@@ -14,7 +14,7 @@
 
 <h2><%= l(:lbl_main) %></h2>
 
-<% form_for :issuelimits, @issuelimits, :url => { :controller => 'issuelimits', :action => "savelimit", :project_id => @project.identifier, :id => @issuelimits.id} do |f| %>
+<%= form_for @issuelimits, :url => { :controller => 'issuelimits', :action => "savelimit", :project_id => @project.identifier, :id => @issuelimits.id} do |f| %>
   <% if can_edit || can_view %>
     <% if f.object.pertracker %>
       <p><%= l(:lbl_per_tracker_mode)%></p>
@@ -36,7 +36,7 @@
       <% end %>
     <% end %>
 
-    <% f.fields_for :limits, @issuelimits.limits do |lim|%>
+    <%= f.fields_for :limits, @issuelimits.limits do |lim|%>
         <% if f.object.pertracker %>
           <tr>
         <% end %>
